@@ -6,6 +6,7 @@
   <!-- <app-product [product]="products[0]"></app-product> -->
   <!-- <app-product [product]="products[1]"></app-product> -->
 
-  <app-product *ngFor="let product of products" ; let i='index' [product]='product'></app-product>
-
+  <!-- можно использовать  let i='index' для получения доп данных -->
+  <!-- <app-product *ngFor="let product of products" let i='index' [product]='product'></app-product> -->
+  <app-product *ngFor="let product of products" [product]='product'></app-product>
 </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { IProduct } from './models/product'
 
 // импорт тестового продукта
-// import { products as data, products } from './data/products';
+// import { products as data, products } from './data/products'
 import { ProductsService } from './services/products.servece'
 
 
@@ -12,12 +12,12 @@ import { ProductsService } from './services/products.servece'
   styleUrls: ['./app.component.scss']
 })
 // export class AppComponent {
-//   title = 'angular-app';
+//   title = 'angular-app'
 
 
 //   /**
 //    *использование данных интерфейса тестового продукта
-//    * products: IProduct[] = data;
+//    * products: IProduct[] = data
 //    *
 //    *  */
 // }
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
     // т.к.данный метод возвращает string мы можем подписаться на нее, передаем в подпись callback продукты
     this.productsService.getAll().subscribe(products => {
 
-      // console.log(products)
+      console.log(products)
 
       //присвоим нашему массиву продуктов products: IProduct[] = [] полученные продукты
       // у метода getAll должен быть прописан дженерик
