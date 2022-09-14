@@ -1,3 +1,4 @@
+//интерфейс для тестовых продуктов
 export interface IProduct {
   id: number
   title: string
