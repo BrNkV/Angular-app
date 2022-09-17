@@ -2,9 +2,8 @@ import { Injectable } from "@angular/core"
 
 // необходимо заимпортить в AppModule
 import { HttpClient, HttpParams } from "@angular/common/http"
-import { Observable } from "rxjs"
+import { delay, Observable } from "rxjs"
 import { IProduct } from '../models/product'
-import { __values } from "tslib"
 
 /**
  *  данный сервис является абстрактным слоем работающим с сущностью Product
@@ -32,9 +31,16 @@ export class ProductsService {
       // может принимать в разных форматах
       // 1 params: new HttpParams().append('limit', 5)
       // 2
+      // params: new HttpParams({
+      //   fromString: 'limit=5'
+      // })
+      //3
       params: new HttpParams({
-        fromString: 'limit=5'
+        fromObject: { limit: 10 }
       })
-    })
+      //можно искуственно замедлить с помощью pipe() котор применяется ко всему данному стриму
+    }).pipe(
+      delay(1000)
+    )
   }
 }

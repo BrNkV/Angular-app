@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { IProduct } from './models/product'
+import { Observable, tap } from "rxjs"
 
 // импорт тестового продукта
 // import { products as data, products } from './data/products'
-import { ProductsService } from './services/products.servece'
+import { ProductsService } from './services/products.servece';
 
 
 @Component({
@@ -29,7 +30,11 @@ import { ProductsService } from './services/products.servece'
  */
 export class AppComponent implements OnInit {
   title = 'angular-app'
-  products: IProduct[] = []
+  // products: IProduct[] = []
+  loading = false
+
+  //стримы
+  products$: Observable<IProduct[]>
 
   // для полдключения сервиса мы реализовываем конструктор
   constructor(private productsService: ProductsService) {
@@ -38,6 +43,9 @@ export class AppComponent implements OnInit {
 
   //обязательный метод для реализации
   ngOnInit(): void {
+    this.loading = true
+
+    /** первый подход
     // т.к.данный метод возвращает string мы можем подписаться на нее, передаем в подпись callback продукты
     this.productsService.getAll().subscribe(products => {
 
@@ -46,7 +54,18 @@ export class AppComponent implements OnInit {
       //присвоим нашему массиву продуктов products: IProduct[] = [] полученные продукты
       // у метода getAll должен быть прописан дженерик
       this.products = products
-
+      this.loading = false
     })
+     */
+
+    /**
+     * второй подход - улучшим код
+     * поработаем со стримами
+     * используем tap() он никак не изменяет данные просто добавляет функционал
+     */
+    this.products$ = this.productsService.getAll().pipe(
+      tap(() => this.loading = false)
+    )
+
   }
 }
