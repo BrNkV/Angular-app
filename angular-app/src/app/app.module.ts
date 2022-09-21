@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { GlobalErrorComponent } from './components/global-error/global-error.component';
 
 @NgModule({
   // декларирование модуля
   declarations: [
     AppComponent,
-    ProductComponent
+    ProductComponent,
+    GlobalErrorComponent
   ],
   imports: [
     BrowserModule,

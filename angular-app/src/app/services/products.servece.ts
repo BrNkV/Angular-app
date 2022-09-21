@@ -46,7 +46,7 @@ export class ProductsService {
     }).pipe(
       delay(1000),
       // передадим сюда оператор обработки ошибок
-      catchError(this.errorHandler)
+      catchError(this.errorHandler.bind(this))
     )
   }
 
