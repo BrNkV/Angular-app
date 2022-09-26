@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 
 // необходимо заимпортить в AppModule
 import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http"
-import { catchError, delay, Observable, throwError } from "rxjs"
+import { catchError, delay, Observable, retry, throwError } from "rxjs"
 import { IProduct } from '../models/product'
 import { ErrorService } from './error.service';
 
@@ -45,6 +45,8 @@ export class ProductsService {
       //можно искуственно замедлить с помощью pipe() котор применяется ко всему данному стриму
     }).pipe(
       delay(1000),
+      // для повторения запроса можно использовать retry(кол-во)
+      retry(2),
       // передадим сюда оператор обработки ошибок
       catchError(this.errorHandler.bind(this))
     )
