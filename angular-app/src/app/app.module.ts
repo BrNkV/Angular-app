@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { GlobalErrorComponent } from './components/global-error/global-error.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   // декларирование модуля
@@ -17,7 +18,8 @@ import { GlobalErrorComponent } from './components/global-error/global-error.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   // регистрация сервиса
   providers: [],

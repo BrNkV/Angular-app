@@ -36,6 +36,9 @@ export class AppComponent implements OnInit {
   //стримы
   products$: Observable<IProduct[]>
 
+  // поиск по пробуктам
+  term = ''
+
   // для полдключения сервиса мы реализовываем конструктор
   constructor(private productsService: ProductsService) {
 

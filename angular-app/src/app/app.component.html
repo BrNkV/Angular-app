@@ -1,7 +1,20 @@
 <app-global-error></app-global-error>
 
 <div class="max-w-2xl container mx-auto pt-5">
-  <h1 class="font-bold mb-2 text-center text-lg">{{title | titlecase}}</h1>
+
+<h1 class="font-bold mb-2 text-center text-lg">{{title | titlecase}}</h1>
+
+<!-- для считывания изменения инпута будем использовать зависимость от этого значения показывая список товаров
+используем связь тайп скрипта и шаблона - деректива ng-model c двусторонним связыванием
+необходим будет импорт FormsModule в app.module.ts
+-->
+<input
+type="text"
+class="mb-2 border py-2 px-4 w-full"
+placeholder="Filter prod..."
+[(ngModel)]="term"
+>
+
 
 
   <!-- one prod -->
