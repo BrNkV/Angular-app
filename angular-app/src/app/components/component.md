@@ -5,3 +5,5 @@ ng generate component [folder]+[component-name] --skip-tests
 
 пример
 ng g c components/global-error --skip-tests
+ng g c components/modal --skip-tests
+

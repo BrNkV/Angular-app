@@ -30,4 +30,6 @@
   <div *ngIf="products$ | async as products">
     <app-product *ngFor="let product of products | filterProducts: term" [product]='product'></app-product>
   </div>
+
+  <app-modal></app-modal>
 </div>
