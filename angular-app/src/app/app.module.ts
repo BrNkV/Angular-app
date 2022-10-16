@@ -9,6 +9,9 @@ import { GlobalErrorComponent } from './components/global-error/global-error.com
 import { FormsModule } from '@angular/forms';
 import { FilterProductsPipe } from './pipes/filter-products.pipe';
 import { ModalComponent } from './components/modal/modal.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   // декларирование модуля
@@ -17,13 +20,16 @@ import { ModalComponent } from './components/modal/modal.component';
     ProductComponent,
     GlobalErrorComponent,
     FilterProductsPipe,
-    ModalComponent
+    ModalComponent,
+    CreateProductComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule
   ],
   // регистрация сервиса
   providers: [],
