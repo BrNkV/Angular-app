@@ -12,6 +12,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FocusDirective } from './directives/focus.directive';
 
 @NgModule({
   // декларирование модуля
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FilterProductsPipe,
     ModalComponent,
     CreateProductComponent,
+    FocusDirective,
   ],
   imports: [
     BrowserModule,

@@ -27,6 +27,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   submit() {
+    console.log(this.title);
     console.log(this.form.value);
   }
 
