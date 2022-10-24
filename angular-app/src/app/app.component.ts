@@ -5,6 +5,7 @@ import { Observable, tap } from "rxjs"
 // импорт тестового продукта
 // import { products as data, products } from './data/products'
 import { ProductsService } from './services/products.servece';
+import { ModalService } from './services/modal.service';
 
 
 @Component({
@@ -40,7 +41,8 @@ export class AppComponent implements OnInit {
   term = ''
 
   // для полдключения сервиса мы реализовываем конструктор
-  constructor(private productsService: ProductsService) {
+  constructor(private productsService: ProductsService,
+    public modalService: ModalService) {
 
   }
 

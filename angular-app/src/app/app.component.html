@@ -31,7 +31,12 @@
     <app-product *ngFor="let product of products | filterProducts: term" [product]='product'></app-product>
   </div>
 
-  <app-modal title="Create new product">
+  <app-modal *ngIf="modalService.isVisible$ | async" title="Create new product">
     <app-create-product></app-create-product>
   </app-modal>
+
+  <!-- кнопка открытия модалки -->
+  <button class="rounded-full bg-cyan-700 text-white fixed right-5 bottom-5 px-4 py-2"
+  (click)="modalService.open()"
+  >+</button>
 </div>
