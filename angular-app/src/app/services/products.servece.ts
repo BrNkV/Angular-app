@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 
 // необходимо заимпортить в AppModule
 import { HttpClient, HttpErrorResponse, HttpParams } from "@angular/common/http"
-import { catchError, delay, Observable, retry, throwError } from "rxjs"
+import { catchError, delay, Observable, retry, throwError, tap } from 'rxjs';
 import { IProduct } from '../models/product'
 import { ErrorService } from './error.service';
 
@@ -23,6 +23,10 @@ export class ProductsService {
     private errorService: ErrorService
   ) {
   }
+
+  // будем хранить в этом массиве в рамках этого сервиса, данные о продуктах которые мы загрузили
+  products: IProduct[] = []
+
   /**
    * метод делает запрос на сервер и получает данные
    *
@@ -47,6 +51,8 @@ export class ProductsService {
       delay(500),
       // для повторения запроса можно использовать retry(кол-во)
       retry(2),
+      // добавим оператор тап котор примет продукт (перехватывает данные)
+      tap(products => this.products = products),
       // передадим сюда оператор обработки ошибок
       catchError(this.errorHandler.bind(this))
     )
@@ -62,6 +68,10 @@ export class ProductsService {
    *  */
   create(product: IProduct): Observable<IProduct> {
     return this.http.post<IProduct>('https://fakestoreapi.com/products', product)
+      .pipe(
+        tap(prod => this.products.push(prod))
+        // console.log(this.products);
+      )
   }
 
   // приватный метод обработки ошибки

@@ -27,8 +27,9 @@
   <!-- <app-product *ngFor="let product of products$ | async" [product]='product'></app-product> -->
 
   <!-- 3 вариант изменим пайп на новый с фильтрацией filterProducts -->
-  <div *ngIf="products$ | async as products">
-    <app-product *ngFor="let product of products | filterProducts: term" [product]='product'></app-product>
+  <div *ngIf="productsService.products">
+    <app-product *ngFor="let product of productsService.products | filterProducts: term" [product]='product'>
+    </app-product>
   </div>
 
   <app-modal *ngIf="modalService.isVisible$ | async" title="Create new product">
@@ -37,6 +38,5 @@
 
   <!-- кнопка открытия модалки -->
   <button class="rounded-full bg-cyan-700 text-white fixed right-5 bottom-5 px-4 py-2"
-  (click)="modalService.open()"
-  >+</button>
+    (click)="modalService.open()">+</button>
 </div>
