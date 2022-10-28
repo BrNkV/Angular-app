@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ModalService } from 'src/app/services/modal.service';
+import { ProductsService } from 'src/app/services/products.servece';
 
 @Component({
   selector: 'app-create-product',
@@ -7,6 +9,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-product.component.scss']
 })
 export class CreateProductComponent implements OnInit {
+
+  // нужно добавить сервис productService и modalService
+  constructor(
+    private productService: ProductsService,
+    private modalService: ModalService
+  ) { }
+
 
   // новая форма, которую мы сможем использовать в шаблоне
   // обязательно импорт import { ReactiveFormsModule } from '@angular/forms' в app.module.ts и добавить в импорт ReactiveFormsModule
@@ -21,7 +30,6 @@ export class CreateProductComponent implements OnInit {
     return this.form.controls.title as FormControl
   }
 
-  constructor() { }
 
   ngOnInit(): void {
   }
@@ -29,6 +37,20 @@ export class CreateProductComponent implements OnInit {
   submit() {
     console.log(this.title);
     console.log(this.form.value);
+    this.productService.create({
+      title: this.form.value as string,
+      price: 13.5,
+      description: 'string',
+      image: 'string',
+      category: 'string',
+      rating: {
+        rate: 42,
+        count: 1
+      }
+      // необходимо добавить подписку на стрим, иначе не будет работать запрос, это оптимизация в Ангуляре
+    }).subscribe(() => {
+      this.modalService.close();
+    })
   }
 
 }

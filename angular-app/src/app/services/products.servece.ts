@@ -44,12 +44,24 @@ export class ProductsService {
       })
       //можно искуственно замедлить с помощью pipe() котор применяется ко всему данному стриму
     }).pipe(
-      delay(1000),
+      delay(500),
       // для повторения запроса можно использовать retry(кол-во)
       retry(2),
       // передадим сюда оператор обработки ошибок
       catchError(this.errorHandler.bind(this))
     )
+  }
+
+  /** создаем новый элемент
+   *  принимает в себя продукт типа Iproduct
+   * возвращает Observ типа Iproduct
+   * через пост запрос обращаемся на серв
+   * в пост указываем дженерик Iproduct
+   *
+   * далее используем метод в create-product-component
+   *  */
+  create(product: IProduct): Observable<IProduct> {
+    return this.http.post<IProduct>('https://fakestoreapi.com/products', product)
   }
 
   // приватный метод обработки ошибки
