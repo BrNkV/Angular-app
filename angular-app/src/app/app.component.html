@@ -1,42 +1,9 @@
 <app-global-error></app-global-error>
 
-<div class="max-w-2xl container mx-auto pt-5">
+<app-navigation></app-navigation>
 
-  <h1 class="font-bold mb-2 text-center text-lg">{{title | titlecase}}</h1>
+<div class="max-w-2xl container mx-auto pt-5 mt-[50px]">
 
-  <!-- для считывания изменения инпута будем использовать зависимость от этого значения показывая список товаров
-используем связь тайп скрипта и шаблона - деректива ng-model c двусторонним связыванием
-необходим будет импорт FormsModule в app.module.ts
--->
-  <input type="text" class="mb-2 border py-2 px-4 w-full" placeholder="Filter prod..." [(ngModel)]="term">
-
-
-
-  <!-- one prod -->
-  <!-- <app-product [product]="products[0]"></app-product> -->
-  <!-- <app-product [product]="products[1]"></app-product> -->
-
-  <p *ngIf="loading" class="text-center text-lg">Loading...</p>
-
-
-  <!-- можно использовать  let i='index' для получения доп данных -->
-  <!-- <app-product *ngFor="let product of products" let i='index' [product]='product'></app-product> -->
-  <!-- <app-product *ngFor="let product of products" [product]='product'></app-product> -->
-
-  <!-- 2ой вариант работы со стримом -->
-  <!-- <app-product *ngFor="let product of products$ | async" [product]='product'></app-product> -->
-
-  <!-- 3 вариант изменим пайп на новый с фильтрацией filterProducts -->
-  <div *ngIf="productsService.products">
-    <app-product *ngFor="let product of productsService.products | filterProducts: term" [product]='product'>
-    </app-product>
-  </div>
-
-  <app-modal *ngIf="modalService.isVisible$ | async" title="Create new product">
-    <app-create-product></app-create-product>
-  </app-modal>
-
-  <!-- кнопка открытия модалки -->
-  <button class="rounded-full bg-cyan-700 text-white fixed right-5 bottom-5 px-4 py-2"
-    (click)="modalService.open()">+</button>
+  <!-- используем router-outlet для возможности использования роутинга -->
+  <router-outlet></router-outlet>
 </div>
