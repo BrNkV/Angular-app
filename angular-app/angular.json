@@ -80,7 +80,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "https://github.com/BrNkV/Angular-app/",
+            "baseHref": "https://brnkv.github.io/Angular-app/",
             "name": "angular-app"
           }
         },
